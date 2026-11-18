@@ -7,12 +7,26 @@ function createFixture(fixture) {
   group.name=fixture.id;
   group.position.set((x0+x1)/2,0,(z0+z1)/2);
   group.rotation.y=headingAngle[fixture.front];
+  if(fixture.design==='S02' || fixture.design==='L02'){
+    const piece=buildLivingPiece(fixture.design==='S02' ? 'sofa' : 'table');
+    if(fixture.design==='S02'){
+      // Match the planning drawing's footprint so saved layouts and door clearances remain valid.
+      const size=new THREE.Box3().setFromObject(piece).getSize(new THREE.Vector3());
+      piece.scale.set(w/size.x,h/size.y,d/size.z);
+    }
+    group.add(piece);return group;
+  }
   if(fixture.kind==='library'){
     group.add(buildHomeFurniture(fixture.design));
     return group;
   }
   if(fixture.design==='C01'){
-    group.add(buildDrawnChair());
+    const chair=buildDrawnChair();
+    const weave=photoFinishes.material('basketPillow',{roughness:.91,sheen:.22});
+    chair.traverse(part=>{
+      if(part.isMesh && part.material.userData.photoFinish==='wool')part.material=weave;
+    });
+    group.add(chair);
     return group;
   }
   if(fixture.design==='V01'){

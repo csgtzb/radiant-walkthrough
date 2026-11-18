@@ -17,7 +17,7 @@ function setupFinishPicker(scene, redraw) {
     return [...copies.values()];
   }
   targets.set('cabinet', isolate(['kitchen-run', 'kitchen-island'], ['maple', 'upper']));
-  targets.set('sofa', isolate(['living-sofa'], ['wool']));
+  targets.set('sofa', isolate(['living-sofa'], ['oatFabric']));
 
   const storageKey = 'radiant/2c/finishes/v1';
   let saved;
@@ -33,8 +33,9 @@ function setupFinishPicker(scene, redraw) {
     function apply() {
       const standard = select.selectedIndex === 0;
       materials.forEach((material, i) => {
-        const id = standard ? originals[i] : select.value;
+        const id = standard && name === 'cabinet' ? originals[i] : select.value;
         material.map = photoFinishes.texture(id);
+        if (id === 'suiteBoards') material.map.repeat.set(.44*.32,1.2*.41);
         material.userData.photoFinish = id;
         material.name = PHOTO_SAMPLES[id].label;
       });

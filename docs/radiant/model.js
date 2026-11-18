@@ -208,5 +208,7 @@ function createApartment(scene) {
     for(const m of floorMats)m.aoMap=replacement;
     contact.dispose();contact=replacement;
   };
+  const rug=buildLivingPiece('rug');
+  rug.position.set(5.48,0,1.94);scene.add(rug);
   return ceiling;
 }

@@ -39,7 +39,7 @@
   $('plan-tab').onclick=$('thumbnail').onclick=()=>selectView('plan');
   $('model-tab').onclick=()=>selectView('model');
   function pause(){if(mode!=='walking')return;mode='paused';clearInput();releaseMouse();sync();$('resume').focus();}
-  function startWalk(reset){
+  function startWalk(reset, lockMouse=true){
     closeFinishes(false);
     if(!ready)return;
     if(reset)Object.assign(person,PLAN.spawn,{pitch:0});
@@ -51,7 +51,7 @@
     }
     try{
       if(touchWalk){fallbackLook=true;$('walk-help').textContent='拖动转向 · 按住前进或后退';}
-      else if(!stage.requestPointerLock)fallback();
+      else if(!lockMouse || !stage.requestPointerLock)fallback();
       else {const request=stage.requestPointerLock();if(request?.catch)request.catch(fallback);}
     }catch{fallback();}
   }
@@ -96,11 +96,12 @@
     main:[2.92,3.31,-.55,-.28],second:[4.44,7.42,2.18,-.27]};
   const requestedRoom=new URLSearchParams(location.search).get('room');
   if(Object.hasOwn(visits,requestedRoom))$('walk-from').value=requestedRoom;
-  $('enter').onclick=()=>{
-    startWalk(true);
+  function visitRoom(lockMouse){
+    startWalk(true,lockMouse);
     const pose=visits[$('walk-from').value];
     if(pose&&canStand(pose[0],pose[1]))[person.x,person.z,person.yaw,person.pitch]=pose;
-  };$('resume').onclick=()=>startWalk(false);$('respawn').onclick=()=>startWalk(true);$('exit').onclick=overview;$('pause').onclick=pause;
+  }
+  $('enter').onclick=()=>visitRoom(true);$('resume').onclick=()=>startWalk(false);$('respawn').onclick=()=>startWalk(true);$('exit').onclick=overview;$('pause').onclick=pause;
   let hadLock=false,skipLockDelta=false;
   document.addEventListener('pointerlockchange',()=>{
     const locked=document.pointerLockElement===stage;
@@ -126,6 +127,8 @@
     }
   });
   addEventListener('keyup',e=>keys.delete(e.code));
+  const requestedView=new URLSearchParams(location.search).get('view');
+  if(requestedView==='plan')selectView('plan');
   try{
     renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
   }catch{
@@ -213,6 +216,7 @@
   });
   for(const event of ['pointerup','pointercancel','lostpointercapture'])stage.addEventListener(event,()=>drag=null);
   new ResizeObserver(resize).observe(stage);ready=true;resize();sync();
+  if(requestedView==='walk')visitRoom(false);
   const held=(a,b)=>Number(keys.has(a)||keys.has(b));
   let last=performance.now();
   renderer.setAnimationLoop(time=>{

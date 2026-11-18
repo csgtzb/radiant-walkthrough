@@ -185,6 +185,7 @@ const PHOTO_SOURCES = {
   }
 };
 const PHOTO_SAMPLES = {
+  "suiteBoards":{"source":"w03","label":"灰橡木拼板","use":"客厅、卧室及走廊","method":"从已铺装地面实拍校正透视、拼接取样"},
   "floor": {
     "source": "brochure-0-1",
     "label": "烟灰木纹地板",
@@ -668,5 +669,35 @@ const PHOTO_SAMPLES = {
       0.6027,
       0.583
     ]
+  },
+  "loomPillow": {
+    "source": "canary-sofa-front",
+    "label": "人字纹靠垫",
+    "use": "客厅",
+    "method": "实拍表面裁切"
+  },
+  "basketPillow": {
+    "source": "canary-sofa-front",
+    "label": "编织靠垫",
+    "use": "客厅",
+    "method": "实拍表面裁切"
+  },
+  "rugPile": {
+    "source": "brochure-0-2",
+    "label": "浅色圈绒地毯",
+    "use": "客厅",
+    "method": "实拍表面裁切"
+  },
+  "driedBloom": {
+    "source": "canary-sofa-front",
+    "label": "干花花头",
+    "use": "客厅",
+    "method": "实拍表面裁切"
+  },
+  "driedStalk": {
+    "source": "canary-sofa-front",
+    "label": "干花花梗",
+    "use": "客厅",
+    "method": "实拍表面裁切"
   }
 };

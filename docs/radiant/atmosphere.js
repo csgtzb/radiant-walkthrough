@@ -109,7 +109,7 @@ function createAtmosphere(scene, ceiling, windowView, renderer) {
     for(const side of [-1,1]) block(g,frameMat,side*(w+rail)/2,0,.024,rail,outerH,.046);
     let loaded,failed;
     pending.push(new Promise((ok,no)=>{loaded=ok;failed=no;}));
-    const map=loader.load(art.image,loaded,undefined,()=>failed(new Error('本地建筑摄影加载失败')));
+    const map=loader.load(key==='wellart' ? 'assets/living/print.jpg' : art.image,loaded,undefined,()=>failed(new Error('本地建筑摄影加载失败')));
     map.colorSpace=T.SRGBColorSpace;map.anisotropy=8;
     part(g,new T.PlaneGeometry(width,h),new T.MeshStandardMaterial({map,roughness:.94,userData:{photoSource:key}}),0,0,.022);
     return g;

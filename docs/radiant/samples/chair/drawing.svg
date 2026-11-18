@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920">
+<title>C01 · 木饰面扶手休闲椅</title>
+<desc>自拟设计。毫米。正面定义构件宽度，侧面定义曲线和高度，左右木架对称。</desc>
+<style>text{font-family:"Noto Sans CJK SC",sans-serif;fill:#36483e}.label{font-size:24px}.note{font-size:19px}.wood{fill:#c69a71}.fabric{fill:#e0ddd5}.wood,.fabric{stroke:#514f46;stroke-width:3;stroke-linejoin:round}.dim{fill:none;stroke:#84918a;stroke-width:2}.fine{stroke:#c0c5b9}</style>
+<rect width="1200" height="920" fill="#faf9f3"/><path d="M48 102H1152 M48 650H1152 M48 852H1152" class="fine"/>
+<text x="48" y="58" font-size="36" font-weight="650">木饰面扶手休闲椅</text><text x="50" y="86" class="note">C01　客厅家具样件　/　毫米</text>
+<text x="50" y="149" class="label">正立面</text><text x="613" y="149" class="label">侧立面</text>
+<g transform="translate(104 189) scale(.51)" id="front" data-width="700">
+<g class="wood">
+<rect data-span="leg" x="10" y="216" width="40" height="564"/><rect x="650" y="216" width="40" height="564"/>
+<rect data-span="rail" x="22" y="428" width="35" height="55"/><rect x="643" y="428" width="35" height="55"/>
+<rect data-span="cross" x="49" y="445" width="602" height="40"/>
+<rect data-span="spine" x="51" y="55" width="28" height="412"/><rect x="621" y="55" width="28" height="412"/>
+</g>
+<g class="fabric"><rect data-span="back" x="66" y="0" width="568" height="395" rx="36"/><rect data-span="seat" x="55" y="350" width="590" height="109" rx="30"/></g>
+<g class="wood"><rect data-span="arm" x="0" y="194" width="64" height="42" rx="12"/><rect x="636" y="194" width="64" height="42" rx="12"/></g>
+<path class="dim" d="M0 799v34m0 -16h700m0 -17v33"/><text x="350" y="860" text-anchor="middle" font-size="37">700</text></g>
+<g transform="translate(652 189) scale(.51)" id="side" data-height="780" data-depth="760">
+<g class="wood">
+<path id="rear-leg" data-span="leg" data-pair="1" data-grain="leg" d="M 153 213 Q 173 206 191 224 L 40 780 L 0 780 Z"/>
+<path id="front-leg" data-span="leg" data-pair="1" data-grain="leg" d="M 616 219 Q 638 211 653 224 L 760 780 L 721 780 Z"/>
+<path id="back-upright" data-span="spine" data-pair="1" data-grain="leg" d="M 39 60 Q 44 45 59 49 L 221 443 L 186 470 Z"/>
+<path id="back-tie" data-span="cross" data-grain="cross" d="M 51 83 L 74 75 L 88 110 L 65 119 Z"/>
+<path id="rear-tie" data-span="cross" data-grain="cross" d="M 162 446 L 204 445 L 205 482 L 162 485 Z"/>
+<path id="front-tie" data-span="cross" data-grain="cross" d="M 628 424 L 667 422 L 670 465 L 631 468 Z"/>
+<path id="side-rail" data-span="rail" data-pair="1" data-grain="depth" d="M 104 446 L 674 416 L 684 460 L 93 501 Z"/>
+</g>
+<g class="fabric">
+<path id="back-pad" data-span="back" data-finish="fabric" d="M 45 31 Q 42 4 73 1 Q 111 -4 128 15 C 167 81 207 222 258 345 Q 270 377 248 389 Q 219 408 192 398 Q 177 393 171 375 L 48 61 Q 44 48 45 31 Z"/>
+<path id="seat-pad" data-span="seat" data-finish="fabric" d="M 154 404 Q 154 383 187 381 C 310 376 535 347 646 350 Q 698 350 706 379 Q 719 425 690 438 Q 677 444 646 444 L 199 471 Q 160 475 155 448 Q 151 428 154 404 Z"/>
+</g>
+<path id="armrest" class="wood" data-span="arm" data-pair="1" data-grain="depth" d="M 80 207 Q 78 197 96 194 C 209 178 437 203 620 192 Q 658 187 676 196 Q 689 202 681 215 Q 674 229 644 230 C 506 235 388 233 237 224 Q 172 219 121 232 Q 93 238 84 225 Z"/>
+<path class="dim" d="M0 799v34m0 -16h760m0 -17v33 M-22 0h-40m18 0v780m-18 0h40"/><text x="380" y="860" text-anchor="middle" font-size="37">760</text><text transform="translate(-62 420) rotate(-90)" text-anchor="middle" font-size="37">780</text>
+</g>
+<g transform="translate(57 684) scale(.197)" stroke="#514f46" stroke-width="6"><rect x="66" y="43" width="568" height="207" rx="32" fill="#cbc7bb"/><rect x="55" y="181" width="590" height="525" rx="40" fill="#e0ddd5"/><rect x="0" y="80" width="64" height="602" rx="18" fill="#c69a71"/><rect x="636" y="80" width="64" height="602" rx="18" fill="#c69a71"/></g>
+<text x="238" y="725" class="label">俯视 · 坐面与双扶手</text><text x="238" y="766" class="note">座垫宽 590　/　靠垫宽 568</text><text x="238" y="802" class="note">前缘座高约 430</text>
+<text x="720" y="726" class="label">材料与收口</text><text x="720" y="766" class="note">木纹随构件长向</text><text x="720" y="802" class="note">暖白织布软包 · 同布滚边</text>
+<text x="50" y="890" class="note">C01　/　自拟概念设计</text><text x="1150" y="890" class="note" text-anchor="end">家具立面与剖形　　01 / 01</text></svg>

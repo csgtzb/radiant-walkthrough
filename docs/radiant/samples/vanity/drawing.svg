@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="930" viewBox="0 0 1320 930">
+<title>公卫浴室柜 · 自拟设计图 V01</title>
+<desc>毫米制正立面、纵剖面与俯视图。柜体宽690、深500、台高850。石面嵌盆、两个抽面和下方开放格。</desc>
+<defs>
+  <pattern id="reed" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#c99868"/><path d="M3 0v16" stroke="#ac7b50" stroke-width="2"/></pattern>
+  <style>
+    text{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#233e35}
+    .label{font-size:18px;font-weight:600}.note{font-size:15px;fill:#52675e}.small{font-size:13px;fill:#52675e}
+    .part{stroke:#4e574b;stroke-width:1.8}.wood{fill:#d2a67a}.rear{fill:#ae825b}.face{fill:url(#reed)}.stone{fill:#f1ecde}.metal{fill:#545b55}
+    .dim path,.dim line{stroke:#66766c;stroke-width:1.3;fill:none}.dim text{font-size:23px;text-anchor:middle}.thin{stroke:#88958a;stroke-width:1;fill:none}
+  </style>
+</defs>
+<rect width="1320" height="930" fill="#fbfaf4"/>
+<path d="M48 98h1224M48 675h1224M48 880h1224" stroke="#b6bfb2"/>
+<text x="48" y="53" font-size="31" font-weight="650">公卫浴室柜</text><text x="49" y="81" class="note">自拟设计图 · 台下盆 / 竖纹抽面 / 开放底格</text>
+<text x="1272" y="54" text-anchor="end" font-size="22">V01</text><text x="1272" y="80" text-anchor="end" class="small">尺寸单位 mm</text>
+<text x="78" y="139" class="label">正立面</text><text x="495" y="139" class="label">侧剖面</text><text x="895" y="139" class="label">俯视图</text>
+<!-- Each projection has its own millimetre space. Elevations measure down from the countertop. -->
+<g id="front" transform="translate(86 235) scale(.47)">
+  <g class="part">
+    <rect data-part="plinth" class="rear" x="32" y="775" width="626" height="75"/>
+    <rect data-part="back" class="rear" x="24" y="24" width="642" height="731"/>
+    <rect data-part="left" class="wood" x="6" y="24" width="18" height="751"/>
+    <rect data-part="right" class="wood" x="666" y="24" width="18" height="751"/>
+    <rect data-part="base" class="wood" x="24" y="755" width="642" height="20"/>
+    <rect data-part="shelf" class="wood" x="24" y="575" width="642" height="20"/>
+    <rect data-part="upper" class="face" x="26" y="29" width="638" height="236"/>
+    <rect data-part="lower" class="face" x="26" y="270" width="638" height="300"/>
+    <rect data-part="pull-upper" class="metal" x="281" y="64" width="128" height="8"/>
+    <rect data-part="pull-lower" class="metal" x="281" y="305" width="128" height="8"/>
+    <rect data-part="top" class="stone" x="0" y="0" width="690" height="24"/>
+    <rect data-part="tap-stem" class="metal" x="335" y="-140" width="20" height="140"/>
+    <rect data-part="spout" class="metal" x="335" y="-140" width="20" height="16"/>
+  </g>
+  <g class="dim"><path d="M0 850v50m690-50v50M0 888h690m-696 6 12-12m678 12 12-12M-20 0h-46m46 850h-46M-54 0v850m-6-844 12-12m-12 856 12-12"/><text x="345" y="880">690</text><text transform="translate(-65 425) rotate(-90)">850</text></g>
+</g>
+<g id="side" transform="translate(520 235) scale(.47)">
+  <g class="part">
+    <rect data-part="plinth" class="rear" x="12" y="775" width="426" height="75"/>
+    <rect data-part="left right" x="6" y="24" width="461" height="751" fill="#f7f1e4"/>
+    <rect data-part="back" class="rear" x="6" y="24" width="12" height="731"/>
+    <rect data-part="base" class="wood" x="18" y="755" width="449" height="20"/>
+    <rect data-part="shelf" class="wood" x="18" y="575" width="449" height="20"/>
+    <rect data-part="upper" class="wood" x="467" y="29" width="18" height="236"/>
+    <rect data-part="lower" class="wood" x="467" y="270" width="18" height="300"/>
+    <rect data-part="pull-upper" class="metal" x="485" y="64" width="14" height="8"/>
+    <rect data-part="pull-lower" class="metal" x="485" y="305" width="14" height="8"/>
+    <rect data-part="top" class="stone" x="0" y="0" width="500" height="24"/>
+    <rect x="142" y="-1" width="260" height="25" fill="#fbfaf4" stroke="none"/><path id="bowl-section" d="M142 24 Q148 125 272 125 Q396 125 402 24" fill="#e2e7de"/>
+    <rect data-part="tap-stem" class="metal" x="60" y="-140" width="20" height="140"/>
+    <rect data-part="spout" class="metal" x="70" y="-140" width="118" height="16"/>
+  </g>
+  <g class="dim"><path d="M0 854v46m500-46v46M0 888h500m-506 6 12-12m488 12 12-12M510 595h42m-42 160h42m-12-160v160m-6-154 12-12m-12 166 12-12"/><text x="250" y="880">500</text><text transform="translate(574 675) rotate(-90)">160</text></g>
+</g>
+<g id="plan" transform="translate(897 235) scale(.47)">
+  <rect id="top-plan" width="690" height="500" fill="#f1ecde" class="part"/>
+  <ellipse id="bowl-plan" cx="345" cy="272" rx="200" ry="130" fill="#e2e7de" class="part"/>
+  <circle cx="345" cy="272" r="15" fill="#8d9c91"/><circle cx="345" cy="70" r="10" fill="#545b55"/>
+  <rect x="335" y="70" width="20" height="118" class="metal"/>
+  <g class="dim"><path d="M145 272h400m-406 6 12-12m388 12 12-12"/><text x="345" y="255">400</text></g>
+</g>
+<text x="897" y="506" class="note">台盆开口　400 × 260</text><text x="897" y="540" class="note">盆深　125</text><text x="897" y="574" class="note">龙头最高点　距地 990</text><text x="897" y="608" class="note">后边靠墙，抽面朝公卫内侧</text>
+<text x="50" y="720" class="label">构造与表面</text>
+<image x="51" y="746" width="32" height="32" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAAIAAgDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9jK9A5z//2Q=="/><text x="96" y="769" class="note">雾白柜体饰面 · 抽面竖筋间距 16，凸起 2</text>
+<image x="51" y="797" width="32" height="32" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAAVANkDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9anigUHOc+tc50AxgIGG6e9ACKYV53/8Aj2aAAyxCAYbJHagCnBKFv0IU5zQBqXreZKmenAJH8qBlXTbOaJy2BsIYAE8jmi49B1iswaQSDAP3eKA0GHG38aCRQABzQAMQ3HWgAcBcHDflQAA5PCk/hQAOGCn5fz6UAL5gK/6pc+oBoAaXJXcAeeo9KB9BVlBFKwWEkfGMKeaB2FY7UyaYgWQFf8RQICcigBFbgUBfoKTxSuAj87aLgLx7ii4AMc4OaAAHKjmmAufY0AVxG2eQcUADJsGSMD1IoAAcjPagABVkPIJHbNAEaYF3GfRqANhwC6ZJA3HoeelA3sY0lxPHPL+8k2hiACwOO1IizLfh9mkmmEjlvLUYz25plJahIQhwcA7yOaBjqBBjBz6UDByWUigLIUHbHQFhpbcMc0BYcV2w9QKLiGFwwzgqB1z3oKCEqGboeeKBqw91CLyQc/pQSxGYEryKBWF42GgBGwI+3Wga1EVCADg9aQoruKelMBrfeWgB2R6igLhkGkwGjhRx0oQDqYD/ALCrqRkj6UAKulowILP+dAA2kIEIEkoHpuoAP7Fjzw8n4mgCE6TGh3ZY4PrQBasyLi1R2GTvNAXMuW0SS8l6j5iaB3ZZ8PfvLqbPfFA2wucOznHRzQJjnXepGcZoEIY/KiJBJx6mgB3PtQAc0AI671xSYISSEKVOTwaLDTFkxsORkUW1Ex2AFGAKYCE4U8Z4oGhpfcseABkmgY6gTY1hvYL2agQqjaMZzSe4CnoaYCMOEpDQOQqk4zTCyuIrAnpSYtB1ABTA/9k="/><text x="96" y="820" class="note">浅色石英石 · 台面厚 24，内嵌椭圆盆</text>
+<rect x="680" y="746" width="32" height="32" fill="#535d56"/><text x="725" y="769" class="note">金属拉手，宽 128，台面内收纳凸出五金</text>
+<text x="680" y="820" class="note">离地基座 75，开放底格净高 160，两抽面间缝 5</text>
+<text x="50" y="907" class="small">Radiant 2C 公共卫生间 · 概念样件</text><text x="1270" y="907" class="small" text-anchor="end">自拟测试输入 · 仅用于建模验证</text>
+</svg>

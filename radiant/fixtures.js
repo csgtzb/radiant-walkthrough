@@ -3,10 +3,22 @@ function createFixture(fixture) {
   const T=THREE;
   const group=new T.Group();
   const [x0,z0,x1,z1]=fixture.bounds;
-  const w=x1-x0, d=z1-z0, h=fixture.height;
+  const [w,d]=fixture.size, h=fixture.height;
   group.name=fixture.id;
   group.position.set((x0+x1)/2,0,(z0+z1)/2);
-  if(fixture.front==='north')group.rotation.y=Math.PI;
+  group.rotation.y=headingAngle[fixture.front];
+  if(fixture.kind==='library'){
+    group.add(buildHomeFurniture(fixture.design));
+    return group;
+  }
+  if(fixture.design==='C01'){
+    group.add(buildDrawnChair());
+    return group;
+  }
+  if(fixture.design==='V01'){
+    group.add(buildDrawnVanity());
+    return group;
+  }
   const finish=(color,roughness,metalness=0)=>new T.MeshStandardMaterial({color,roughness,metalness});
   const enamel=finish(0xf4f2e9,.42), metal=finish(0x9ca6a5,.28,.45);
   function mesh(geometry,material,x,y,z){

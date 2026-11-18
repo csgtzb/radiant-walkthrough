@@ -18,7 +18,16 @@ function splitWall(wall) {
 }
 const wallSpans = PLAN.walls.flatMap(splitWall);
 const blocksMovement = (s) => !s.opening || ['glass','window'].includes(s.opening.kind);
-const obstacles = [...wallSpans.filter(blocksMovement).map(s=>s.bounds), ...PLAN.rails.map(r=>r.bounds), PLAN.entryBoundary, ...PLAN.fixtures.map(f=>f.bounds)];
+function doorLeafBounds(span){
+  const [end,sign]=PLAN.doorSwing[span.id],opening=span.opening;
+  const alongX=span.axis==='x',hinge=end==='start'?opening.start+.052:opening.end-.052;
+  const edge=span.bounds[(alongX?1:0)+(sign>0?2:0)];
+  const tip=edge+sign*(opening.end-opening.start-.087);
+  const lo=Math.min(edge,tip),hi=Math.max(edge,tip);
+  return alongX?[hinge-.020,lo,hinge+.020,hi]:[lo,hinge-.020,hi,hinge+.020];
+}
+const openLeaves=wallSpans.filter(s=>s.opening?.profile==='door'&&PLAN.doorSwing[s.id]).map(doorLeafBounds);
+const obstacles = [...wallSpans.filter(blocksMovement).map(s=>s.bounds), ...PLAN.rails.map(r=>r.bounds), PLAN.entryBoundary, ...openLeaves, ...PLAN.fixtures.map(f=>f.bounds)];
 function insidePolygon(x,z,polygon) {
   let inside=false;
   for(let i=0,j=polygon.length-1;i<polygon.length;j=i++) {

@@ -26,6 +26,7 @@
     ui('orbit-tools',overview);ui('overview-bar',overview);ui('model-heading',overview);
     ui('walk-bar',active);ui('crosshair',active);ui('pause-layer',mode==='paused');
     ui('labels',overview&&labelsVisible);if(ceiling)ceiling.visible=!overview;
+    if(ready){windowView.visible=!overview;ground.visible=overview;}
     if(renderer)renderer.shadowMap.needsUpdate=true;
   }
   function overview(){mode='overview';clearInput();releaseMouse();sync();drawOverview();}
@@ -40,17 +41,26 @@
     if(!ready)return;
     if(reset)Object.assign(person,PLAN.spawn,{pitch:0});
     mode='walking';fallbackLook=false;clearInput();sync();stage.focus({preventScroll:true});
-    $('walk-help').textContent='WASD / 方向键移动 · 鼠标转向 · Esc 暂停';
+    $('walk-help').textContent='WASD / 方向键移动 · 鼠标转向 · L 切换昼夜 · Esc 暂停';
     function fallback(){
       if(mode!=='walking'||document.pointerLockElement===stage)return;
-      fallbackLook=true;$('walk-help').textContent='WASD / 方向键移动 · 按住鼠标拖动转向 · Esc 暂停';
+      fallbackLook=true;$('walk-help').textContent='WASD / 方向键移动 · 按住鼠标拖动转向 · L 切换昼夜 · Esc 暂停';
     }
     try{
       if(!stage.requestPointerLock)fallback();
       else {const request=stage.requestPointerLock();if(request?.catch)request.catch(fallback);}
     }catch{fallback();}
   }
-  $('enter').onclick=()=>startWalk(true);$('resume').onclick=()=>startWalk(false);$('respawn').onclick=()=>startWalk(true);$('exit').onclick=overview;$('pause').onclick=pause;
+  const visits={living:[6.57,3.25,-.91,-.28],kitchen:[6.88,3.91,-2.59,-.13],
+    bath:[2.41,6.92,-.91,-.47],suite:[2.19,4.21,-2.04,-.45],
+    main:[2.92,3.31,-.55,-.28],second:[4.44,7.42,2.18,-.27]};
+  const requestedRoom=new URLSearchParams(location.search).get('room');
+  if(Object.hasOwn(visits,requestedRoom))$('walk-from').value=requestedRoom;
+  $('enter').onclick=()=>{
+    startWalk(true);
+    const pose=visits[$('walk-from').value];
+    if(pose&&canStand(pose[0],pose[1]))[person.x,person.z,person.yaw,person.pitch]=pose;
+  };$('resume').onclick=()=>startWalk(false);$('respawn').onclick=()=>startWalk(true);$('exit').onclick=overview;$('pause').onclick=pause;
   let hadLock=false,skipLockDelta=false;
   document.addEventListener('pointerlockchange',()=>{
     const locked=document.pointerLockElement===stage;
@@ -58,7 +68,7 @@
     if(locked)skipLockDelta=true;
     if(!locked&&hadLock&&mode==='walking')pause();hadLock=locked;
   });
-  document.addEventListener('pointerlockerror',()=>{if(mode==='walking'){fallbackLook=true;$('walk-help').textContent='WASD / 方向键移动 · 按住鼠标拖动转向 · Esc 暂停';}});
+  document.addEventListener('pointerlockerror',()=>{if(mode==='walking'){fallbackLook=true;$('walk-help').textContent='WASD / 方向键移动 · 按住鼠标拖动转向 · L 切换昼夜 · Esc 暂停';}});
   function steer(dx,dy){
     person.yaw+=dx*.0025;
     person.pitch=Math.max(-1.35,Math.min(1.35,person.pitch-dy*.0025));
@@ -88,18 +98,36 @@
   scene.background=new T.Color(0xe8ebe1);
   const ground=new T.Mesh(new T.PlaneGeometry(200,200),new T.MeshStandardMaterial({color:0xdfe4db,roughness:1}));
   ground.rotation.x=-Math.PI/2;ground.position.y=-.159;ground.receiveShadow=true;scene.add(ground);
-  const ambient=new T.HemisphereLight(0xf4f8ff,0xe8dfd3,1.22);scene.add(ambient);
-  // Broad pools of indirect light keep white corners legible at eye level.
-  for(const [x,z,intensity] of [[3.1,6.1,7],[2.0,8.1,4],[5.6,3.1,9],[1.9,2.25,5],[5.65,8.05,5],[1.4,4.7,2],[1.3,6.4,2]]){
-    const fill=new T.PointLight(0xfff4e3,intensity,5.8,2);
-    fill.position.set(x,PLAN.parameters.clearHeight-.36,z);scene.add(fill);
-  }
-  const sunlight=new T.DirectionalLight(0xfff4df,2.55);sunlight.position.set(12,18,-1);sunlight.target.position.set(4,0,5);sunlight.castShadow=true;
-  Object.assign(sunlight.shadow.camera,{left:-9,right:9,top:9,bottom:-9,near:.1,far:40});
-  sunlight.shadow.mapSize.set(2048,2048);sunlight.shadow.normalBias=.018;sunlight.shadow.bias=-.00018;
-  scene.add(sunlight,sunlight.target);
-  renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;
+  const windowView=makeWindowView();scene.add(windowView);
+  renderer.toneMapping=T.ACESFilmicToneMapping;
   ceiling=createApartment(scene);
+  scene.environment=lightSampleReflections(renderer);scene.environmentRotation.y=.70;
+  const atmosphere=createAtmosphere(scene,ceiling,windowView,renderer);
+  const lightButtons=[...document.querySelectorAll('[data-light]')];
+  let lightMode;
+  function setLighting(next) {
+    lightMode=next;
+    atmosphere.set(next);
+    $('model-view').dataset.light=next;
+    for(const button of lightButtons)button.setAttribute('aria-pressed',String(button.dataset.light===next));
+    needsRender=true;
+  }
+  for(const button of lightButtons)button.onclick=()=>setLighting(button.dataset.light);
+  setLighting(new URLSearchParams(location.search).get('light')==='night'?'night':'day');
+  addEventListener('keydown',event=>{
+    if(view==='model' && event.code==='KeyL' && !event.repeat && !event.altKey && !event.metaKey && !event.ctrlKey &&
+       !event.target.closest('input,select,textarea')){
+      event.preventDefault();setLighting(lightMode==='day'?'night':'day');
+    }
+  });
+  Promise.all([homeMaterials.ready,roomFinishes.ready,atmosphere.ready]).then(()=>{needsRender=true;}).catch(error=>{
+    $('notice').textContent=error.message;ui('notice',true);
+  });
+  document.addEventListener('furniture-moved',({detail:f})=>{
+    const obj=scene.getObjectByName(f.id);
+    obj.position.set(f.center[0],0,f.center[1]);obj.rotation.y=headingAngle[f.front];
+    refreshFloorShading();renderer.shadowMap.needsUpdate=true;needsRender=true;
+  });
   walk=new T.PerspectiveCamera(68,1,.045,80);walk.rotation.order='YXZ';ortho=new T.OrthographicCamera(-9,9,9,-9,.1,100);
   const center=new T.Vector3(4.48,.90,4.94),v=new T.Vector3();
   const orbit={angle:.31,lift:1.02,zoom:1};

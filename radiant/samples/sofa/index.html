@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>布艺双人沙发 · 实拍对照</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f6f1;color:#33382f;font:15px/1.6 "Inter","Noto Sans CJK SC",sans-serif}main{max-width:1520px;margin:auto;padding:28px clamp(18px,4vw,72px) 42px}a{color:#365344;text-underline-offset:4px}h1{font-size:clamp(28px,3.2vw,46px);margin:20px 0 4px;line-height:1.25}p{margin:5px 0;color:#5c6259}.pair{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px}article{border:1px solid #d2d4c9;border-radius:8px;background:#fbfaf6;overflow:hidden}.bar,footer{padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.bar{justify-content:space-between;border-bottom:1px solid #d2d4c9}h2{font-size:16px;margin:0}.bar a,footer,.note{font-size:13px}footer{border-top:1px solid #d2d4c9;min-height:55px;color:#596153}.view{aspect-ratio:1.52;position:relative;background:#e9e6df;overflow:hidden}.view img,.view canvas{width:100%;height:100%;display:block}.view img{object-fit:cover;transform:scale(1.24);transform-origin:48% 67%}canvas{touch-action:none;cursor:grab}canvas:active{cursor:grabbing}button{border:1px solid #cad0c3;border-radius:4px;background:#f6f6ef;color:#384a3c;padding:4px 9px;cursor:pointer}button[aria-pressed=true]{color:white;background:#344a3d;border-color:#344a3d}.note{margin-top:16px}#error,#photo-error{position:absolute;top:40%;left:8%;right:8%;text-align:center}@media(max-width:800px){.pair{grid-template-columns:1fr}.model{order:-1}}
+</style></head>
+<body><main><a href="../../index.html">← 返回户型漫游</a>
+<h1>布艺双人沙发</h1><p>对照实拍观察整块坐垫、松靠包和布边。模型可以拖动旋转，滚轮放大。</p>
+<section class="pair"><article><div class="bar"><h2>Sixpenny · Neva Loveseat</h2><a href="https://sixpenny.com/products/neva-loveseat" target="_blank" rel="noopener">品牌原页 ↗</a></div>
+<div class="view"><img id="reference" src="reference-local.jpg" alt="Sixpenny 的 Corn Silk 双人沙发实拍，窗光从左侧照在整块坐垫与两只靠包上">
+<p id="photo-error" hidden>参考照片可在品牌原页查看。</p></div>
+<footer>实物摄影 © Sixpenny · Corn Silk 水洗棉麻</footer></article>
+<article class="model"><div class="bar"><h2>可旋转模型</h2><a href="sofa.glb" download>下载 GLB ↓</a></div>
+<div class="view"><canvas aria-label="布艺双人沙发模型，拖动旋转"></canvas><p id="error" hidden>此浏览器未能启动 WebGL 2，可下载 GLB 查看。</p></div>
+<footer><button data-view="orbit" aria-pressed="true">照片视角</button><button data-view="seat">坐垫前沿</button><button data-view="back">靠背接缝</button><button data-view="side">侧面</button></footer></article></section>
+<p class="note">外形参照品牌标称的 62 × 41 × 33 英寸。软包轮廓按照片估形，模型面料采用调成燕麦色的实拍亚麻。<a href="https://polyhaven.com/a/rough_linen" target="_blank" rel="noopener">面料来源 ↗</a></p></main>
+<script>
+const reference=document.querySelector('#reference');
+function useOriginal(){
+  if(reference.dataset.tried){document.querySelector('#photo-error').hidden=false;reference.hidden=true;return;}
+  reference.dataset.tried='true';
+  reference.src='https://sixpenny.com/cdn/shop/files/neva-loveseat-washed-cotton-linen-corn-silk-lifestyle-PDP1-2_1200x1200.jpg';
+}
+reference.addEventListener('error',useOriginal);
+if(reference.complete&&!reference.naturalWidth)useOriginal();
+</script>
+<script src="../../assets/three.min.js"></script><script src="../vanity/studio-light.js"></script><script src="../studio-reflections.js"></script>
+<script src="linen-images.js"></script><script src="model.js"></script><script src="visibility.js"></script><script src="../inspect.js"></script><script src="inspect.js"></script>
+</body></html>

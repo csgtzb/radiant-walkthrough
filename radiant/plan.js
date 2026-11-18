@@ -86,7 +86,35 @@ const PLAN = {
     "洗烘设备及两处浴室柜的占地按平面图估算。洗烘叠放、设备立面与台面高度均为展示假设。",
     "按图示方向建模。阳台等高处理，入户门外无公共走廊。"
   ],
+  // Instance, asset, centre X/Z (metres), front. Edit these independently of model geometry.
+  "placements": [
+    ["living-sofa","S02",4.50,1.73,"east"],
+    ["living-table","L02",5.70,2.28,"south"],
+    ["bath-toilet","T01",1.51,6.070,"south"],
+    ["ensuite-toilet","T01",1.51,5.082,"north"],
+    ["bath-tub","T02",0.735,6.488,"south"],
+    ["ensuite-shower","T03",0.735,4.678,"south"],
+    ["kitchen-run","K01",5.653,6.212,"north"],
+    ["kitchen-island","K02",5.57,4.66,"north"],
+    ["island-stool-west","K03",5.18,3.995,"south"],
+    ["island-stool-east","K03",5.96,3.995,"south"],
+    ["main-bed","B01",1.78,1.542,"south"],
+    ["main-nightstand","N01",2.82,0.725,"south"],
+    ["main-wardrobe","W01",3.662,1.97,"west"],
+    ["second-bed","B02",5.94,8.659,"north"],
+    ["second-nightstand","N01",6.891,9.41,"north"],
+    ["second-wardrobe","W02",3.60,8.99,"east"]
+  ],
+  // Fully open room doors: hinge at start/end of the opening, swing toward ±X or ±Z.
+  "doorSwing": {
+    "main-entry": ["end",-1], "bedroom-entry": ["start",1],
+    "ensuite-north": ["end",1], "bath-service-spine": ["end",-1], "laundry-opening": ["start",1]
+  },
   "fixtures": [
+    {
+      "id": "living-chair", "design": "C01", "kind": "chair", "name": "客厅休闲椅（自拟摆位）",
+      "bounds": [5.25, 0.91, 5.95, 1.67], "front": "south", "height": 0.78
+    },
     {
       "id": "laundry-stack", "kind": "laundryStack", "name": "洗衣机与烘干机",
       "bounds": [2.89532, 3.95575, 3.58639, 4.80171], "front": "south", "height": 1.72
@@ -96,8 +124,8 @@ const PLAN = {
       "bounds": [1.97787, 4.92086, 2.67609, 5.42962], "front": "north", "height": 0.85
     },
     {
-      "id": "bath-vanity", "kind": "vanity", "name": "公卫浴室柜",
-      "bounds": [1.97787, 5.72273, 2.67609, 6.23150], "front": "south", "height": 0.85
+      "id": "bath-vanity", "design": "V01", "kind": "vanity", "name": "公卫浴室柜",
+      "bounds": [1.98198, 5.72273, 2.67198, 6.22273], "front": "south", "height": 0.85
     }
   ],
   "floors": [

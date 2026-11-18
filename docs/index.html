@@ -14,9 +14,16 @@
 <h1 id="title">Radiant <i>2C</i></h1>
 <p class="layout">两室两卫 <span>／</span> 开放式厨房 <span>／</span> 阳台</p>
 <dl><div><dt>室内面积</dt><dd>751 <small>ft²</small></dd></div><div><dt>阳台面积</dt><dd>84 <small>ft²</small></dd></div></dl>
-<div class="actions"><a class="walk" href="radiant/?room=living&amp;view=walk">走进客厅 <span aria-hidden="true">→</span></a><a href="radiant/?view=plan">在平面图上摆家具 <span aria-hidden="true">↗</span></a></div>
+<div class="actions"><a class="walk" href="radiant/?room=living&amp;view=walk"><span id="walk-label">走进客厅</span> <span aria-hidden="true">→</span></a><a href="radiant/?view=plan">在平面图上摆家具 <span aria-hidden="true">↗</span></a></div>
 <p class="hint">漫游时可以更换材质、切换昼夜；在平面图上可以拖动和旋转家具。</p>
 </section>
-<figure><img src="radiant/assets/living/daylight.webp" alt="客厅日景模型渲染，窗光照在燕麦色沙发、编织靠垫和圆角石面茶几上" width="1600" height="1016" fetchpriority="high"><figcaption><b>客厅 · 日景</b><span>模型高清渲染</span></figcaption></figure>
+<figure><img src="radiant/assets/living/daylight.webp" alt="客厅日景模型渲染，窗光照在燕麦色沙发、编织靠垫和圆角石面茶几上" width="1600" height="1016" fetchpriority="high"><figcaption>
+<div class="room-picker" role="group" aria-label="选择样板间空间">
+<button type="button" data-room="living" aria-pressed="true">客厅</button>
+<button type="button" data-room="main" aria-pressed="false">主卧</button>
+<button type="button" data-room="kitchen" aria-pressed="false">厨房</button>
+<button type="button" data-room="bath" aria-pressed="false">公卫</button>
+</div><span>模型高清渲染</span></figcaption></figure>
 </main>
+<script src="showroom.js"></script>
 </body></html>

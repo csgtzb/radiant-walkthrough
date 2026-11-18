@@ -182,10 +182,27 @@ const PHOTO_SOURCES = {
     "yearSource": "https://valery.ca/toronto-real-estate/buildings/canary-commons-condos-35-rolling-mills-road/",
     "terms": "原始房源摄影由发布方保留权利",
     "view": "https://foxmarin.ca/wp-content/uploads/2023/07/S450-35-Rolling-Mills-Rd-3.jpeg"
+  },
+  "canary-5-0": {
+    "title": "厨房橱柜与木砧板",
+    "project": "Canary Commons",
+    "city": "Toronto",
+    "year": 2022,
+    "unit": "35 Rolling Mills Rd · S450",
+    "url": "https://foxmarin.ca/wp-content/uploads/2023/07/fs_S450-35RollingMillsRd.pdf#page=6",
+    "who": "Fox Marin Associates",
+    "yearSource": "https://valery.ca/toronto-real-estate/buildings/canary-commons-condos-35-rolling-mills-road/",
+    "terms": "原始房源摄影由发布方保留权利",
+    "view": "https://foxmarin.ca/wp-content/uploads/2023/07/fs_S450-35RollingMillsRd.pdf#page=6"
   }
 };
 const PHOTO_SAMPLES = {
-  "suiteBoards":{"source":"w03","label":"灰橡木拼板","use":"客厅、卧室及走廊","method":"从已铺装地面实拍校正透视、拼接取样"},
+  "suiteBoards": {
+    "source": "w03",
+    "label": "灰橡木拼板",
+    "use": "客厅、卧室及走廊",
+    "method": "从已铺装地面实拍校正透视、拼接取样"
+  },
   "floor": {
     "source": "brochure-0-1",
     "label": "烟灰木纹地板",
@@ -699,5 +716,101 @@ const PHOTO_SAMPLES = {
     "label": "干花花梗",
     "use": "客厅",
     "method": "实拍表面裁切"
+  },
+  "wovenSlate": {
+    "source": "canary-bedroom-wall",
+    "label": "灰纹靠垫布",
+    "use": "卧室床品",
+    "method": "取自套房实拍表面，校正局部明暗",
+    "box": [
+      0.69444,
+      0.53254,
+      0.75417,
+      0.59976
+    ]
+  },
+  "stripedLinen": {
+    "source": "canary-bedroom-wall",
+    "label": "条纹亚麻靠垫",
+    "use": "卧室床品",
+    "method": "取自套房实拍表面，校正局部明暗",
+    "box": [
+      0.53333,
+      0.54633,
+      0.67778,
+      0.61182
+    ]
+  },
+  "ivoryPercale": {
+    "source": "canary-bedroom-wall",
+    "label": "象牙白棉质床品",
+    "use": "卧室床品",
+    "method": "取自套房实拍表面，校正局部明暗",
+    "box": [
+      0.33611,
+      0.68593,
+      0.49861,
+      0.77382
+    ]
+  },
+  "honedTop": {
+    "source": "w05",
+    "label": "浅米石英石台面",
+    "use": "厨房台面",
+    "method": "取自套房实拍表面，校正局部明暗",
+    "box": [
+      0.76111,
+      0.74768,
+      0.875,
+      0.83099
+    ]
+  },
+  "wcGlaze": {
+    "source": "w12",
+    "label": "暖白陶瓷釉面",
+    "use": "卫生间坐便器",
+    "method": "取自套房实拍表面，校正局部明暗",
+    "box": [
+      0.34861,
+      0.87473,
+      0.3875,
+      0.9143
+    ]
+  },
+  "wcCover": {
+    "source": "w12",
+    "label": "白色缓降座盖",
+    "use": "卫生间坐便器",
+    "method": "取自套房实拍表面，校正局部明暗",
+    "box": [
+      0.35694,
+      0.77892,
+      0.40556,
+      0.81433
+    ]
+  },
+  "boardWood": {
+    "source": "canary-5-0",
+    "label": "砧板端纹与木面",
+    "use": "厨房样板陈设",
+    "method": "房源实拍表面裁切、光照校正",
+    "box": [
+      0.46111,
+      0.37743,
+      0.47778,
+      0.44292
+    ]
+  },
+  "brushedSteel": {
+    "source": "w05",
+    "label": "拉丝不锈钢",
+    "use": "水槽盆壁与排水件",
+    "method": "房源实拍表面裁切、光照校正",
+    "box": [
+      0.63333,
+      0.14579,
+      0.65972,
+      0.16453
+    ]
   }
 };

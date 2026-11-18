@@ -45,3 +45,7 @@ for (const key of ['oatFabric','loomPillow','basketPillow','rugPile','driedBloom
   PHOTO_SWATCHES[key]=new URL('../living/'+key+'.png',document.currentScript.src).href;
 }
 PHOTO_SWATCHES.suiteBoards = new URL('../living/suiteBoards.webp',document.currentScript.src).href;
+
+for (const key of ["wovenSlate", "stripedLinen", "ivoryPercale", "honedTop", "wcGlaze", "wcCover", "brushedSteel", "boardWood"]) {
+  PHOTO_SWATCHES[key]=new URL('../room-details/'+key+'.png',document.currentScript.src).href;
+}

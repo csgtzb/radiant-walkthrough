@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Radiant 2C · Unity 材质来源</title>
+<style>*{box-sizing:border-box}body{max-width:950px;margin:32px auto;padding:0 24px;background:#f8f7f2;color:#233c33;font:16px/1.6 system-ui}a{color:#285740}ul{padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}li{display:flex;align-items:center;gap:12px;border-top:1px solid #c9cec6;padding:12px 0;scroll-margin-top:20px}li:target{outline:2px solid #62816f}li img{width:58px;height:58px;object-fit:cover}small{display:block;overflow-wrap:anywhere}</style></head>
+<body><a href="../../">← 返回户型漫游</a><h1>全屋材质来源</h1><p>木纹、织物与拉丝金属取自 Unity 的 Measured Material Library。我们为样板间调整了色调、光泽和铺设比例。墙漆、台面、墙地砖和洁具釉面使用库中涂层与非金属预设调配。窗外景观与装饰画沿用照片。</p><p><a href="https://github.com/Unity-Technologies/MeasuredMaterialLibraryURP">Unity 官方原库 ↗</a>　<a href="LICENSE.md">MIT 许可</a></p><ul></ul>
+<script src="catalog.js"></script><script>
+const list = document.querySelector('ul');
+for (const [id, material] of Object.entries(UNITY_FINISHES)) {
+  const item = document.createElement('li'), img = document.createElement('img');
+  item.id = id; img.src = id + '.webp'; img.alt = '';
+  const text = document.createElement('div'), name = document.createElement('strong');
+  const detail = document.createElement('small'), link = document.createElement('a');
+  name.textContent = material.label; link.href = material.source; link.textContent = material.preset;
+  detail.append(link); text.append(name, detail); item.append(img, text); list.append(item);
+}
+document.getElementById(location.hash.slice(1))?.scrollIntoView();
+</script></body></html>

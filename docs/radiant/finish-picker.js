@@ -34,13 +34,10 @@ function setupFinishPicker(scene, redraw) {
       const standard = select.selectedIndex === 0;
       materials.forEach((material, i) => {
         const id = standard && name === 'cabinet' ? originals[i] : select.value;
-        material.map = photoFinishes.texture(id);
-        if (id === 'suiteBoards') material.map.repeat.set(.44*.32,1.2*.41);
-        material.userData.photoFinish = id;
-        material.name = PHOTO_SAMPLES[id].label;
+        photoFinishes.apply(material, id);
       });
-      label.querySelector('img').src = PHOTO_SWATCHES[select.value];
-      sourceLink.href = 'assets/photo-references/index.html#sample-' + select.value;
+      label.querySelector('img').src = photoFinishes.preview(select.value);
+      sourceLink.href = 'assets/unity-library/index.html#' + select.value;
       choices[name] = select.value;
       redraw();
       photoFinishes.ready().then(redraw);

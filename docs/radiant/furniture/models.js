@@ -387,7 +387,7 @@ function buildHomeFurniture(code){
     // A staggered glazed backsplash sits between the counter and the upper cabinets.
     const backing=photoFinishes.material('trim',{roughness:.86});
     const tile=photoFinishes.material('splash',{roughness:.29,clearcoat:.32});
-    const width=2378,height=552,left=-1558,bottom=909,back=-302;
+    const width=2364,height=552,left=-1558,bottom=909,back=-302;
     const grout=new T.Mesh(new T.BoxGeometry(width,height,7),backing);
     grout.position.set(left+width/2,bottom+height/2,back);grout.receiveShadow=true;model.add(grout);
     const positions=[],normals=[],uv=[],faces=[];

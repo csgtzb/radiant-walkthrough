@@ -4,9 +4,9 @@
   const label = document.querySelector('#walk-label');
   const rooms = {
     living: [preview.getAttribute('src'), preview.alt],
-    main: ['radiant/assets/room-details/main.webp', '主卧模型渲染，展示包布床头、分层靠枕与垂落的床尾毯'],
-    kitchen: ['radiant/assets/room-details/kitchen.webp', '厨房模型渲染，展示吊柜、木纹地柜、石英石台面与岛台'],
-    bath: ['radiant/assets/room-details/bath.webp', '公卫模型渲染，展示白釉坐便器、缓降座盖与浴室柜']
+    main: ['radiant/assets/room-details/main.webp?v=unity1', '主卧模型渲染，展示包布床头、分层靠枕与垂落的床尾毯'],
+    kitchen: ['radiant/assets/room-details/kitchen.webp?v=unity1', '厨房模型渲染，展示吊柜、木纹地柜、石英石台面与岛台'],
+    bath: ['radiant/assets/room-details/bath.webp?v=unity1', '公卫模型渲染，展示白釉坐便器、缓降座盖与浴室柜']
   };
   const buttons = document.querySelectorAll('.room-picker button');
   for (const button of buttons) {

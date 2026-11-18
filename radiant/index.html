@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#193d35"><title>Radiant 2C · 户型漫游</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="brand"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M6 28V13l12-7 12 7v15H6Zm0-15 12 7 12-7M18 20v8M12 17v8" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/></svg><strong>Radiant</strong></div><span class="brand-divider"></span><span>住宅空间漫游</span><span class="header-end">户型样板 <b>2C</b></span></header>
+<main>
+<aside>
+<div class="title-block"><p class="eyebrow">ARTSY CONDOMINIUMS</p><h1>Radiant <i>2C</i></h1><p class="summary">两室两卫 <span>·</span> 开放式厨房 <span>·</span> 阳台</p></div>
+<section class="specs"><h2>户型参数</h2><dl><div><dt>室内面积</dt><dd>751 <small>ft²</small></dd></div><div><dt>室外面积</dt><dd>84 <small>ft²</small></dd></div><div><dt>暂定净高</dt><dd>2.70 <small>m</small></dd></div></dl></section>
+<section class="drawing"><h2>原始平面图</h2><button id="thumbnail" aria-label="打开图纸核对"><img src="assets/plan.png" alt="Radiant 2C 两卧室户型平面图"><span>查看叠图 <b>↗</b></span></button></section>
+<div class="side-footer"><span class="dot"></span> 概念白模 <span class="slash">/</span> 图示朝向</div>
+</aside>
+<section class="workspace" aria-label="户型查看器">
+<nav aria-label="视图"><button id="model-tab" aria-pressed="true">三维模型</button><button id="plan-tab" aria-pressed="false">图纸核对</button></nav>
+<div id="model-view">
+<div id="stage"><div id="labels" aria-hidden="true"></div><div id="crosshair" hidden></div></div>
+<div id="model-heading" class="view-heading"><span class="eyebrow">MODEL VIEW</span><h2>户型总览</h2></div>
+<div class="controls" id="orbit-tools"><button id="labels-btn" title="显示或隐藏房间名称" aria-pressed="true">房间名</button><i></i><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-in" aria-label="放大">+</button><button id="reset" aria-label="恢复默认视角" title="恢复默认视角">⟲</button></div>
+<div class="actionbar" id="overview-bar"><p>拖动旋转 <span>·</span> 滚轮缩放</p><button id="enter" class="primary">进入看房 <b>→</b></button></div>
+<div class="actionbar" id="walk-bar" hidden><p id="walk-help">WASD / 方向键移动 · 鼠标转向 · Esc 暂停</p><button id="pause">暂停漫游</button></div>
+<div id="pause-layer" hidden><div class="pause-card"><span class="eyebrow">WALKTHROUGH</span><h2>漫游已暂停</h2><label class="eye-setting" for="eye-height">视点高度 <output id="eye-value" for="eye-height"></output></label><input id="eye-height" type="range" min="1.20" max="1.80" step="0.05"><button id="resume" class="primary">继续看房 <b>→</b></button><button id="respawn">回到玄关</button><button id="exit">返回户型总览</button></div></div>
+</div>
+<div id="plan-view" hidden><div class="plan-heading"><span class="eyebrow">PLAN REVIEW</span><h2>图纸核对</h2></div><div class="plan-layout"><div id="sheet"></div><section class="plan-notes"><h3>图层</h3><label><input id="overlay" type="checkbox" checked> 墙体与开口</label><label><input id="measures" type="checkbox"> 尺寸端点</label><label><input id="fixture-layer" type="checkbox" checked> 洗烘设备与浴室柜</label><label class="range">底图浓度<input id="opacity" type="range" min="10" max="100" value="65"></label><div class="legend"><span><i class="wall"></i>墙体</span><span><i class="door"></i>通行开口</span><span><i class="glass"></i>玻璃</span></div><h3>比例复核</h3><div id="calibrations"></div><p class="note">次卧宽度定比例。客厅南端取推定边界，进深仅供参考。设备按图示占地摆放。洗烘叠放、柜体款式及高度为展示假设。</p></section></div></div>
+<div id="notice" role="alert" hidden></div>
+</section>
+</main>
+<script src="plan.js"></script><script src="assets/three.min.js"></script><script src="geometry.js"></script><script src="review.js"></script><script src="fixtures.js"></script><script src="model.js"></script><script src="viewer.js"></script>
+</body></html>

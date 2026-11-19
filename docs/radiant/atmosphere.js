@@ -74,9 +74,10 @@ function createAtmosphere(scene, ceiling, windowView, renderer) {
   const counter=scene.getObjectByName('kitchen-run');
   const counterLights=new T.Group();
   counter.add(counterLights);
-  for(const [x,width,y,z] of [[-.99,1.09,1.474,-.03],[-.121,.49,1.392,.08],[.525,.54,1.474,-.03]]){
+  for(const [x,width,y,z] of [[-1.092,.87,1.517,.056],[-.417,.425,1.517,.056],[.258,.78,1.517,.086]]){
     block(counter,opal,x,y,z,width,.008,.016);
     const beam=new T.SpotLight(0xffead2,1.65*width,1.18,1.18,.88,2);
+    beam.distance=y-.90+.6;
     beam.position.set(x,y-.01,z);
     beam.target.position.set(x,.90,z+.06);
     counterLights.add(beam,beam.target);

@@ -337,11 +337,41 @@ function buildHomeFurniture(code){
           box(w-5,5,d-5,0,2.5,0,'stone',2);
         }else box(w,h,d);
         break;
+      case 'reeded':{
+        const front=d/2, rim=12, inner=w-2*rim;
+        box(w,h,16,0,h/2,-front+8,'oak',1);
+        for(const side of [-1,1]){
+          box(rim,h,d-rim,side*(w-rim)/2,h/2,-rim/2,'oak',1);
+          box(rim,h,10,side*(w-rim)/2,h/2,front-5,'steel',1);
+        }
+        for(const y of [rim/2,h-rim/2]){
+          box(inner,rim,d,0,y,0,'oak',1);
+          box(inner,rim,10,0,y,front-5,'steel',1);
+        }
+        box(inner,12,d-40,0,h*.49,-7,'oak',1);
+        // Continuous corrugated glazing catches light on alternate sides of each flute.
+        const vertices=[],uv=[],indices=[],steps=4*Math.round(inner/8);
+        for(let i=0;i<=steps;i++){
+          const u=i/steps, X=(u-.5)*inner, Z=front-5+2.4*Math.cos(i*Math.PI/2);
+          vertices.push(X,rim,Z,X,h-rim,Z);uv.push(u,0,u,1);
+          if(i<steps){const j=2*i;indices.push(j,j+2,j+1,j+1,j+2,j+3);}
+        }
+        const pane=new T.BufferGeometry();
+        pane.setAttribute('position',new T.Float32BufferAttribute(vertices,3));
+        pane.setAttribute('uv',new T.Float32BufferAttribute(uv,2));pane.setIndex(indices);pane.computeVertexNormals();
+        const glazing=add(pane,'glass',0,0,0);
+        glazing.material=glazing.material.clone();glazing.material.opacity=.72;
+        glazing.material.roughness=.28;glazing.material.color.set(0xbcc4c2);
+        break;
+      }
+      case 'upperSolid':
+        box(w,h,d,0,h/2,0,'oak',2);
+        box(w-3,h-3,12,0,h/2,d/2+7,'upper',2);break;
       case 'sink':{
-        const rim=h-31,innerW=w*.75,innerD=d*.59,side=(w-innerW)/2,edge=(d-innerD)/2;
-        for(const X of [-w/2+side/2,w/2-side/2])box(side,31,d,X,h-15.5,0,'stone');
-        for(const Z of [-d/2+edge/2,d/2-edge/2])box(innerW,31,edge,0,h-15.5,Z,'stone');
-        shell([[innerW+3,innerD+4,rim+29],[innerW-10,innerD-10,rim+23],[innerW-23,innerD-20,27],[innerW-60,innerD-62,11],[2,2,8]],.19,'steel');
+        const rim=h-20,innerW=Math.min(545,w*.75),innerD=d*.59,side=(w-innerW)/2,edge=(d-innerD)/2;
+        for(const X of [-w/2+side/2,w/2-side/2])box(side,20,d,X,h-10,0,'stone');
+        for(const Z of [-d/2+edge/2,d/2-edge/2])box(innerW,20,edge,0,h-10,Z,'stone');
+        shell([[innerW+3,innerD+4,rim+18],[innerW-10,innerD-10,rim+12],[innerW-23,innerD-20,27],[innerW-60,innerD-62,11],[2,2,8]],.19,'steel');
         cylinder(31,30,3,0,14,0,'steel');
         cylinder(20,20,3,0,16,0,'gasket');
         for(let i=0;i<8;i++){
@@ -378,38 +408,12 @@ function buildHomeFurniture(code){
   }
   if(code==='K01'){
     const boardMaterial=photoFinishes.material('boardWood',{roughness:.68});
-    for(const [x,wide,tall,tilt] of [[509,215,327,.044],[414,159,242,-.053]]){
+    for(const [x,wide,tall,tilt] of [[-473,188,290,.044],[-554,135,218,-.053]]){
       const board=new T.Mesh(new VanityRoundedBox(wide,tall,17,4,8),boardMaterial);
-      board.name='备餐砧板';board.position.set(x,909+tall*.5,-252+(tall<300?30:0));
+      board.name='备餐砧板';board.position.set(x,911+tall*.5,-252+(tall<300?30:0));
       board.rotation.set(-.12,tilt*.5,tilt);board.castShadow=board.receiveShadow=true;
       model.add(board);
     }
-    // A staggered glazed backsplash sits between the counter and the upper cabinets.
-    const backing=photoFinishes.material('trim',{roughness:.86});
-    const tile=photoFinishes.material('splash',{roughness:.29,clearcoat:.32});
-    const width=2364,height=552,left=-1558,bottom=909,back=-302;
-    const grout=new T.Mesh(new T.BoxGeometry(width,height,7),backing);
-    grout.position.set(left+width/2,bottom+height/2,back);grout.receiveShadow=true;model.add(grout);
-    const positions=[],normals=[],uv=[],faces=[];
-    for(let row=0;row<6;row++){
-      for(let cell=-(row%2)*115;cell<width;cell+=230){
-        const a=Math.max(0,cell)+1.2,b=Math.min(width,cell+230)-1.2;
-        const y=bottom+row*92+1.1,yt=y+89.8,idx=positions.length/3;
-        for(const [inset,z] of [[0,back+3.6],[1.7,back+5.4]]){
-          for(const [x,v,nx,ny] of [[a+inset,y+inset,-1,-1],[b-inset,y+inset,1,-1],[b-inset,yt-inset,1,1],[a+inset,yt-inset,-1,1]]){
-            positions.push(left+x,v,z);uv.push(x/520,v/520);
-            const normal=new T.Vector3(nx*.025,ny*.025,inset?1:.26).normalize();normals.push(...normal.toArray());
-          }
-        }
-        faces.push(idx+4,idx+5,idx+6,idx+4,idx+6,idx+7);
-        for(let j=0;j<4;j++){
-          const k=(j+1)%4;faces.push(idx+j,idx+k,idx+k+4,idx+j,idx+k+4,idx+j+4);
-        }
-      }
-    }
-    const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(positions,3));
-    g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setAttribute('normal',new T.Float32BufferAttribute(normals,3));g.setIndex(faces);
-    const face=new T.Mesh(g,tile);face.name='釉面砖防溅墙';face.receiveShadow=true;model.add(face);
   }
   if(bed){
     const [width,length]=design.size;

@@ -254,6 +254,36 @@ function buildHomeFurniture(code){
         }else pull(w,shape==='door'?h*.61:h-42,d/2);
         break;
       }
+      case 'reeded':{
+        const front=d/2, rim=12, inner=w-2*rim;
+        box(w,h,16,0,h/2,-front+8,'oak',1);
+        for(const side of [-1,1]){
+          box(rim,h,d-rim,side*(w-rim)/2,h/2,-rim/2,'oak',1);
+          box(rim,h,10,side*(w-rim)/2,h/2,front-5,'steel',1);
+        }
+        for(const y of [rim/2,h-rim/2]){
+          box(inner,rim,d,0,y,0,'oak',1);
+          box(inner,rim,10,0,y,front-5,'steel',1);
+        }
+        box(inner,12,d-40,0,h*.49,-7,'oak',1);
+        // Continuous corrugated glazing catches light on alternate sides of each flute.
+        const vertices=[],uv=[],indices=[],steps=4*Math.round(inner/8);
+        for(let i=0;i<=steps;i++){
+          const u=i/steps, X=(u-.5)*inner, Z=front-5+2.4*Math.cos(i*Math.PI/2);
+          vertices.push(X,rim,Z,X,h-rim,Z);uv.push(u,0,u,1);
+          if(i<steps){const j=2*i;indices.push(j,j+2,j+1,j+1,j+2,j+3);}
+        }
+        const pane=new T.BufferGeometry();
+        pane.setAttribute('position',new T.Float32BufferAttribute(vertices,3));
+        pane.setAttribute('uv',new T.Float32BufferAttribute(uv,2));pane.setIndex(indices);pane.computeVertexNormals();
+        const glazing=add(pane,'glass',0,0,0);
+        glazing.material=glazing.material.clone();glazing.material.opacity=.72;
+        glazing.material.roughness=.28;glazing.material.color.set(0xbcc4c2);
+        break;
+      }
+      case 'upperSolid':
+        box(w,h,d,0,h/2,0,'oak',2);
+        box(w-3,h-3,12,0,h/2,d/2+7,'oak',2);break;
       case 'sink':{
         const rim=h-31,innerW=w*.75,innerD=d*.59,side=(w-innerW)/2,edge=(d-innerD)/2;
         for(const X of [-w/2+side/2,w/2-side/2])box(side,31,d,X,h-15.5,0,'stone');

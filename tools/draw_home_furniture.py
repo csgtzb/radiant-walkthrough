@@ -25,7 +25,8 @@ def sheet(code,name,w,d,h):
     ET.SubElement(svg,'rect',width='1160',height='680',fill='#fbfaf5')
     def label(x,y,txt,size):
         ET.SubElement(svg,'text',x=str(x),y=str(y),fill='#36473c',style=f'font:{size}px sans-serif').text=txt
-    label(42,60,name,34);label(42,98,f'{code}　/　自拟设计　　宽 {w} × 深 {d} × 高 {h} mm',20)
+    source = 'Unionville OPT3 适配' if code in ('K01','K02') else '自拟设计'
+    label(42,60,name,34);label(42,98,f'{code}　/　{source}　　宽 {w} × 深 {d} × 高 {h} mm',20)
     label(42,155,'俯视',21);label(608,155,'正立面',21)
     scale=min(475/w,395/max(h,d))
     def view(tag,cx,cy):
@@ -117,40 +118,72 @@ def wardrobe(code,width):
 wardrobe('W01',1360)
 wardrobe('W02',1240)
 
-part('退脚','oak','box',0,-35,1372,550,0,92)
-part('岛柜','oak','box',0,-38,1430,570,90,875)
-for x in [-478,0,478]:part('门板','oak','door',x,253,471,20,98,862)
-part('岛台面','stone','box',0,0,1500,700,875,907)
-sheet('K02','餐厨岛台',1500,700,907)
+# The Unionville OPT3 island elevation, adapted to the existing 1500 mm footprint.
+part('岛台踢脚','black','box',0,-25,1436,554,0,100)
+part('岛台柜体','oak','box',0,-26,1464,580,100,891)
+for x,width in [(-432,600),(168,600),(600,264)]:
+    part('岛台平板门','oak','box',x,277,width-4,20,102,889)
+part('岛台面','stone','box',0,0,1500,700,891,911)
+sheet('K02','Unionville 餐厨岛台',1500,700,911)
 legs(263,263,624,30)
 for x in [-131,131]:part('脚踏横档','oak','box',x,0,23,268,215,242)
 for z in [-131,131]:part('脚踏横档','oak','box',0,z,268,23,215,242)
 part('圆坐面','oak','stoolseat',0,0,343,343,614,654)
 sheet('K03','岛台高凳',343,343,654)
 
-# Kitchen faces local +Z. On this plan it faces north, so the fridge is on the west end.
-part('踢脚','black','box',-364.5,-38,2341,489,0,90)
-part('炉具地柜','oak','box',165,-42,1282,484,90,872)
-part('水槽地柜底箱','oak','box',-776,-42,596,484,90,724)
-part('洗碗机箱','steel','box',-1318,-42,481,484,90,865)
-part('备餐台','stone','box',165,0,1282,630,872,903)
-part('水槽台面','stone','sink',-776,0,600,630,728,903)
-part('洗碗机台面','stone','box',-1318,0,484,630,872,903)
-part('洗碗机','steel','appliance',-1318,241,481,69,90,868)
-for b,t in [(97,330),(335,566),(571,859)]:
-    part('备餐抽屉','oak','drawer',514.75,236,582.5,35,b,t)
-for x in [-925,-627]:part('水槽柜门','oak','door',x,238,294,32,90,718)
-part('水槽前封板','oak','box',-776,239,594,32,722,873)
-part('炉台','black','hob',-120,9,573,537,903,919)
-part('嵌入烤箱','steel','oven',-120,243,575,62,135,862)
-part('龙头','steel','tap',-776,-212,66,176,901,1225)
-part('冰箱箱体','steel','box',1190,-44,737,536,0,1922)
-part('冷冻室','steel','appliance',1190,262,730,62,38,690)
-part('冷藏室','steel','appliance',1190,262,730,62,698,1918)
-for x, width in [(-1252,602),(-637,602),(-22,602),(543.5,525)]:
-    part('吊柜','oak','upper',x,-147,width,330,1480,2140)
-part('抽油烟机','steel','hood',-121,-64,581,455,1398,1480)
-sheet('K01','一字型整体橱柜',3120,630,2140)
+# Unionville Sales Center, option 3. Keep the 900 mm sink and cooking bays,
+# remove the steam tower and drawer bank, and use a 450 mm integrated dishwasher.
+# Right of the worktop, a 15.5 mm reveal separates it from the refrigerator.
+part('踢脚','black','box',-390.5,-30,2307,492,0,100)
+part('左收口','oak','box',-1551,-2,18,604,100,891)
+part('水槽底箱','oak','box',-1092,-42,900,506,100,720)
+for x in [-1317,-867]:
+    part('水槽平板门','oak','box',x,277,446,20,102,880)
+part('水槽台面','stone','sink',-1092,0,900,630,733,911)
+part('左台面收口','stone','box',-1551,0,18,630,891,911)
+part('备餐台','stone','box',60.5,0,1405,630,891,911)
+part('龙头','steel','tap',-1092,-185,60,174,911,1224)
+part('洗碗机箱','steel','box',-417,-28,446,548,100,885)
+part('洗碗机一体门板','oak','box',-417,277,446,20,102,880)
+part('烤箱左封板','oak','box',-118,277,144,20,102,880)
+part('烤箱右封板','oak','box',634,277,144,20,102,880)
+part('烤箱上封板','oak','box',258,277,600,20,704,880)
+part('嵌入烤箱','steel','oven',258,260,598,54,103,702)
+part('炉台','black','hob',258,5,600,510,911,924)
+part('台面右收口','oak','box',735.5,0,55,571,100,891)
+
+# 610 mm counter-to-upper clearance. The central stone continues up behind the inset hood.
+part('整板挡水墙','stone','box',-398.5,-300,2323,18,911,1521)
+# Stone-clad hood projects over the hob. The 865 x 276 inlet sits in the underside.
+part('烟机石饰面','stone','box',258,139,900,18,1521,2377)
+for x in [-183.5,699.5]:
+    part('烟机侧板','stone','box',x,-85,17,430,1521,2377)
+part('烟机底前边','stone','box',258,115,864,30,1521,1539)
+part('烟机底后边','stone','box',258,-238,864,124,1521,1539)
+for x in [-1317,-867]:
+    part('竖纹玻璃吊柜','glass','reeded',x,-112,448,400,1521,2377)
+part('浅灰吊柜','oak','upperSolid',-417,-108,448,407,1521,2377)
+part('顶柜下沿','oak','box',-398.5,-10,2323,600,2377,2395)
+for x,width in [(-1092,900),(-417,450),(258,900)]:
+    part('木饰面顶柜','oak','box',x,-8,width-3,594,2395,2668)
+part('顶柜右收口','oak','box',735.5,-8,55,594,1521,2668)
+part('上封板','oak','box',-398.5,-8,2323,594,2670,2695)
+part('嵌入式烟机','steel','hood',258,-38,865,276,1522,1556)
+part('冰箱旁木饰收口','oak','box',754,-8,18,594,911,1521)
+
+# Panel-ready refrigerator with two freezer drawers, a tall door, and an overhead cabinet.
+part('冰箱箱体','steel','box',1159.5,-31,762,556,100,2011)
+part('冰箱踢脚','black','box',1159.5,-32,762,492,0,98)
+for label,lo,hi in [('下冷冻抽屉',100,525),('上冷冻抽屉',531,873),('冷藏室',879,2011)]:
+    part(label,'oak','box',1159.5,264,758,20,lo,hi)
+    vertical=label=='冷藏室'
+    part('冷藏门拉手' if vertical else '冷冻抽屉拉手','steel','box',
+         818 if vertical else 1159.5,289,10 if vertical else 495,21,
+         lo+72 if vertical else hi-36,lo+585 if vertical else hi-27)
+part('冰箱顶柜','oak','box',1159.5,-9,762,596,2017,2668)
+part('冰箱上封板','oak','box',1159.5,-9,762,596,2670,2695)
+part('冰箱右侧板','oak','box',1551,0,18,608,100,2695)
+sheet('K01','Unionville 一字型橱柜',3120,630,2695)
 
 (folder/'designs.js').write_text('// Generated by tools/draw_home_furniture.py from the paired orthographic views.\nconst HOME_DESIGNS = '+
                                  json.dumps(library,ensure_ascii=False,separators=(',',':'))+';\n')
